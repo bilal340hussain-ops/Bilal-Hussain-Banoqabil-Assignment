@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Budgets | ExpenseTracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-100 text-slate-800">
+    <div class="min-h-screen md:flex">
+      <aside class="bg-slate-900 text-white w-full md:w-64 md:min-h-screen p-6">
+        <a href="dashboard.html" class="block mb-10"
+          ><h1 class="text-2xl font-bold">
+            Expense<span class="text-blue-400">Tracker</span>
+          </h1>
+          <p class="text-slate-400 text-sm mt-2">
+            Manage your money smartly
+          </p></a
+        >
+        <nav class="space-y-2">
+          <a
+            href="dashboard.html"
+            class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white"
+            >▦ &nbsp; Dashboard</a
+          ><a
+            href="transactions.html"
+            class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white"
+            >⇄ &nbsp; Transactions</a
+          ><a
+            href="budgets.html"
+            class="block p-3 rounded-lg bg-blue-600 text-white"
+            >◷ &nbsp; Budgets</a
+          ><a
+            href="reports.html"
+            class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white"
+            >▥ &nbsp; Reports</a
+          >
+        </nav>
+        <div class="mt-12 rounded-xl bg-slate-800 p-4">
+          <p class="text-sm text-slate-300">Monthly budget</p>
+          <p id="sidebarBudget" class="text-xl font-bold mt-2">Rs. 60,000</p>
+          <div class="h-2 bg-slate-700 rounded-full mt-3">
+            <div id="sidebarBudgetProgress" class="h-2 bg-blue-500 rounded-full w-0"></div>
+          </div>
+          <p id="sidebarBudgetPercentage" class="text-xs text-slate-400 mt-2">0% of your budget used</p>
+        </div>
+      </aside>
+      <main class="flex-1 min-w-0 p-5 md:p-8">
+        <header
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
+        >
+          <div>
+            <p
+              class="text-xs font-semibold uppercase tracking-wider text-blue-600"
+            >
+              Personal finance
+            </p>
+            <h2 class="text-2xl font-bold mt-1">Budgets</h2>
+            <p class="text-slate-500 text-sm mt-1">
+              Set spending limits and stay on top of your money.
+            </p>
+          </div>
+          <a
+            href="transactions.html#add-transaction"
+            class="w-fit bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-medium"
+            >+ Add Expense</a
+          >
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+          <div
+            class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+          >
+            <p class="text-sm text-slate-500">Total monthly budget</p>
+            <h3 id="totalBudget" class="text-2xl font-bold mt-3 text-slate-800">Rs. 60,000</h3>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+          >
+            <p class="text-sm text-slate-500">Amount spent</p>
+            <h3 id="budgetSpent" class="text-2xl font-bold mt-3 text-blue-600">Rs. 0</h3>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+          >
+            <p class="text-sm text-slate-500">Budget remaining</p>
+            <h3 id="budgetRemaining" class="text-2xl font-bold mt-3 text-green-600">Rs. 0</h3>
+          </div>
+        </div>
+        <section
+          class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+        >
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <h3 class="text-lg font-bold">Category budgets</h3>
+              <p class="text-sm text-slate-500 mt-1">
+                Monitor spending against your limits
+              </p>
+            </div>
+            <button id="editBudget" class="border px-4 py-2 rounded-lg text-sm">
+              Edit budgets
+            </button>
+          </div>
+          <div id="categoryBudgets" class="space-y-6"></div>
+          <p id="budgetMessage" class="text-sm text-blue-600 mt-4"></p>
+        </section>
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 mt-6">
+          <h3 class="font-bold text-blue-900">Smart spending tip</h3>
+          <p class="text-sm text-blue-800 mt-2">
+            Review your category limits before making extra purchases.
+          </p>
+        </div>
+      </main>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/budget.js"></script>
+  </body>
+</html>

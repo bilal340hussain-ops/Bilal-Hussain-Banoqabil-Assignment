@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Dashboard | ExpenseTracker</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 text-slate-800">
+
+  <div class="min-h-screen md:flex">
+
+    <!-- Sidebar -->
+    <aside class="bg-slate-900 text-white w-full md:w-64 md:min-h-screen p-6">
+
+      <a href="dashboard.html" class="block mb-10">
+        <h1 class="text-2xl font-bold">
+          Expense<span class="text-blue-400">Tracker</span>
+        </h1>
+
+        <p class="text-slate-400 text-sm mt-2">
+          Manage your money smartly
+        </p>
+      </a>
+
+      <nav class="space-y-2">
+
+        <a href="dashboard.html"
+          class="block p-3 rounded-lg bg-blue-600 text-white">
+          ▦ &nbsp; Dashboard
+        </a>
+
+        <a href="transactions.html"
+          class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white">
+          ⇄ &nbsp; Transactions
+        </a>
+
+        <a href="budgets.html"
+          class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white">
+          ◷ &nbsp; Budgets
+        </a>
+
+        <a href="reports.html"
+          class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white">
+          ▥ &nbsp; Reports
+        </a>
+
+      </nav>
+
+      <!-- Sidebar Budget -->
+      <div class="mt-12 rounded-xl bg-slate-800 p-4">
+
+        <p class="text-sm text-slate-300">Monthly budget</p>
+
+        <p id="sidebarBudget" class="text-xl font-bold mt-2">
+          Rs. 60,000
+        </p>
+
+        <div class="h-2 bg-slate-700 rounded-full mt-3">
+          <div id="sidebarBudgetProgress"
+            class="h-2 bg-blue-500 rounded-full w-3/4">
+          </div>
+        </div>
+
+        <p id="sidebarBudgetPercentage"
+          class="text-xs text-slate-400 mt-2">
+          75% of your budget used
+        </p>
+
+      </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 p-5 md:p-8">
+
+      <!-- Header -->
+      <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+
+        <div>
+
+          <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">
+            Personal finance
+          </p>
+
+          <h2 class="text-2xl font-bold mt-1">
+            Dashboard
+          </h2>
+
+          <p class="text-slate-500 text-sm mt-1">
+            Welcome back! Here's your expense overview.
+          </p>
+
+        </div>
+
+        <a href="transactions.html#add-transaction"
+          class="w-fit bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-medium">
+          + Add Expense
+        </a>
+
+      </header>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+
+        <!-- Total Expenses -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+
+          <p class="text-slate-500 text-sm">Total Expenses</p>
+
+          <h3 id="totalExpenses"
+            class="text-2xl font-bold mt-3 text-slate-800">
+            Rs. 0
+          </h3>
+
+          <p class="text-xs text-slate-400 mt-2">
+            This month
+          </p>
+
+        </div>
+
+        <!-- Paid Amount -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+
+          <p class="text-slate-500 text-sm">Paid Amount</p>
+
+          <h3 id="paidAmount"
+            class="text-2xl font-bold mt-3 text-green-600">
+            Rs. 0
+          </h3>
+
+          <p class="text-xs text-slate-400 mt-2">
+            Settled expenses
+          </p>
+
+        </div>
+
+        <!-- Pending Amount -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+
+          <p class="text-slate-500 text-sm">Pending Amount</p>
+
+          <h3 id="pendingAmount"
+            class="text-2xl font-bold mt-3 text-orange-500">
+            Rs. 0
+          </h3>
+
+          <p class="text-xs text-slate-400 mt-2">
+            Needs attention
+          </p>
+
+        </div>
+
+        <!-- Total Transactions -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+
+          <p class="text-slate-500 text-sm">Transactions</p>
+
+          <h3 id="totalTransactions"
+            class="text-2xl font-bold mt-3 text-slate-800">
+            0
+          </h3>
+
+          <p class="text-xs text-slate-400 mt-2">
+            All categories
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Budget Status -->
+      <div class="grid grid-cols-1 gap-5 mb-8">
+
+        <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+
+          <h3 class="text-lg font-bold">
+            Budget status
+          </h3>
+
+          <p class="text-sm text-slate-500 mt-1">
+            Monthly spending limit
+          </p>
+
+          <div class="mt-6">
+
+            <div class="flex justify-between text-sm mb-2">
+
+              <span class="text-slate-600">
+                Budget used
+              </span>
+
+              <b id="budgetPercentage">0%</b>
+
+            </div>
+
+            <div class="h-3 w-full rounded-full bg-slate-100">
+
+              <div id="budgetProgress"
+                class="h-3 rounded-full bg-blue-600"
+                style="width: 0%">
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="flex justify-between text-sm mt-6">
+
+            <span class="text-slate-600">
+              Spent
+            </span>
+
+            <b id="budgetSpent">Rs. 0</b>
+
+          </div>
+
+          <div class="flex justify-between text-sm mt-3">
+
+            <span class="text-slate-600">
+              Remaining
+            </span>
+
+            <b id="budgetRemaining" class="text-green-600">
+              Rs. 0
+            </b>
+
+          </div>
+
+          <a href="budgets.html"
+            class="inline-block text-blue-600 text-sm font-medium mt-6 hover:underline">
+            Manage budgets →
+          </a>
+
+        </section>
+
+      </div>
+
+      <!-- Recent Transactions -->
+      <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+
+        <div class="flex justify-between items-center mb-5">
+
+          <h3 class="text-lg font-bold">
+            Recent transactions
+          </h3>
+
+          <a href="transactions.html"
+            class="text-blue-600 text-sm font-semibold">
+            View all →
+          </a>
+
+        </div>
+
+        <div class="overflow-x-auto">
+
+          <table class="w-full text-left min-w-600px">
+
+            <thead class="bg-slate-100 text-slate-500">
+
+              <tr>
+
+                <th class="p-3">Title</th>
+                <th class="p-3">Category</th>
+                <th class="p-3">Date</th>
+                <th class="p-3">Amount</th>
+                <th class="p-3">Status</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="recentTransactions">
+
+              <!-- JavaScript will render transactions here -->
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="js/data.js"></script>
+  <script src="js/dashbord.js"></script>
+
+</body>
+</html>

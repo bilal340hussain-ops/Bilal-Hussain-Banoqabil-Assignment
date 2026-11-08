@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transactions | ExpenseTracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-100 text-slate-800">
+    <div class="min-h-screen md:flex">
+      <aside class="bg-slate-900 text-white w-full md:w-64 md:min-h-screen p-6">
+        <a href="dashboard.html" class="block mb-10"
+          ><h1 class="text-2xl font-bold">
+            Expense<span class="text-blue-400">Tracker</span>
+          </h1>
+          <p class="text-slate-400 text-sm mt-2">
+            Manage your money smartly
+          </p></a
+        >
+        <nav class="space-y-2">
+          <a
+            href="dashboard.html"
+            class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white"
+            >▦ &nbsp; Dashboard</a
+          ><a
+            href="transactions.html"
+            class="block p-3 rounded-lg bg-blue-600 text-white"
+            >⇄ &nbsp; Transactions</a
+          ><a
+            href="budgets.html"
+            class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white"
+            >◷ &nbsp; Budgets</a
+          ><a
+            href="reports.html"
+            class="block p-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white"
+            >▥ &nbsp; Reports</a
+          >
+        </nav>
+        <div class="mt-12 rounded-xl bg-slate-800 p-4">
+          <p class="text-sm text-slate-300">Monthly budget</p>
+          <p id="sidebarBudget" class="text-xl font-bold mt-2">Rs. 60,000</p>
+          <div class="h-2 bg-slate-700 rounded-full mt-3">
+            <div id="sidebarBudgetProgress" class="h-2 bg-blue-500 rounded-full w-0"></div>
+          </div>
+          <p id="sidebarBudgetPercentage" class="text-xs text-slate-400 mt-2">0% of your budget used</p>
+        </div>
+      </aside>
+      <main class="flex-1 min-w-0 p-5 md:p-8">
+        <header
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
+        >
+          <div>
+            <p
+              class="text-xs font-semibold uppercase tracking-wider text-blue-600"
+            >
+              Personal finance
+            </p>
+            <h2 class="text-2xl font-bold mt-1">Transactions</h2>
+            <p class="text-slate-500 text-sm mt-1">
+              Track, search, and add your expenses.
+            </p>
+          </div>
+          <a
+            href="transactions.html#add-transaction"
+            class="w-fit bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-medium"
+            >+ Add Expense</a
+          >
+        </header>
+        <section
+          id="add-transaction"
+          class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-6"
+        >
+          <h3 class="text-lg font-bold mb-1">Add a transaction</h3>
+          <p class="text-sm text-slate-500 mb-5">
+            Record an expense and keep your finances organized.
+          </p>
+          <form
+            id="expenseForm"
+            class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4"
+          >
+            <div>
+              <label class="block text-sm mb-2" for="title">Expense title</label
+              ><input
+                required
+                id="title"
+                class="w-full border rounded-lg p-3"
+                placeholder="e.g. Groceries"
+              />
+            </div>
+            <div>
+              <label class="block text-sm mb-2" for="category">Category</label
+              ><select
+                id="category"
+                class="w-full border rounded-lg p-3 bg-white"
+              >
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Bills</option>
+                <option>Shopping</option>
+                <option>Health</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm mb-2" for="amount">Amount (Rs.)</label
+              ><input
+                required
+                min="1"
+                type="number"
+                id="amount"
+                class="w-full border rounded-lg p-3"
+                placeholder="0"
+              />
+            </div>
+            <div>
+              <label class="block text-sm mb-2" for="date">Date</label
+              ><input
+                required
+                type="date"
+                id="date"
+                class="w-full border rounded-lg p-3"
+              />
+            </div>
+            <div>
+              <label class="block text-sm mb-2" for="status">Status</label
+              ><select
+                id="status"
+                class="w-full border rounded-lg p-3 bg-white"
+              >
+                <option>Paid</option>
+                <option>Pending</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2 xl:col-span-5">
+              <button
+                class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg"
+                type="submit"
+              >
+                Save transaction</button
+              ><span
+                id="formMessage"
+                class="text-sm text-green-600 ml-3"
+              ></span>
+            </div>
+          </form>
+        </section>
+        <section
+          class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+        >
+          <div
+            class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-5"
+          >
+            <h3 class="text-lg font-bold">All transactions</h3>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search expenses..."
+              class="w-full sm:w-64 border p-3 rounded-lg"
+            />
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left min-w-700px">
+              <thead class="bg-slate-100 text-slate-500">
+                <tr>
+                  <th class="p-3">Title</th>
+                  <th class="p-3">Category</th>
+                  <th class="p-3">Date</th>
+                  <th class="p-3">Amount</th>
+                  <th class="p-3">Status</th>
+                  <th class="p-3">Action</th>
+                </tr>
+              </thead>
+              <tbody id="transactionList"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/expenses.js"></script>
+  </body>
+</html>
