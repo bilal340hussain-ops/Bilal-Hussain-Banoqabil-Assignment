@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO APP</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        max-width: 640px;
+        margin: 64px auto;
+        padding: 0 20px;
+        color: #1f2937;
+        background: #f3f6fb;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        margin-bottom: 24px;
+        text-align: center;
+        color: #172554;
+      }
+
+      #todo-input {
+        width: calc(100% - 120px);
+        padding: 12px 14px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font: inherit;
+      }
+
+      button {
+        padding: 11px 14px;
+        border: 0;
+        border-radius: 8px;
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      #todo-btn {
+        background: #2563eb;
+      }
+
+      button:hover {
+        filter: brightness(0.92);
+      }
+
+      #todo-list {
+        display: grid;
+        gap: 10px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      #todo-list li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgb(15 23 42 / 5%);
+      }
+
+      #todo-list li span {
+        flex: 1;
+        overflow-wrap: anywhere;
+      }
+
+      #todo-list input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #2563eb;
+      }
+
+      .editBtn {
+        background: #64748b;
+      }
+
+      .deleteBtn {
+        background: #dc2626;
+      }
+
+      @media (max-width: 480px) {
+        body {
+          margin-top: 36px;
+        }
+
+        #todo-input {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        #todo-btn {
+          width: 100%;
+        }
+
+        #todo-list li {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TODOLIST APP</h1>
+    <input type="text" id="todo-input" placeholder="Enter Tittle: e.g Test" />
+    <button id="todo-btn">Add Task</button>
+    <ul id="todo-list"></ul>
+  </body>
+  <script src="script.js"></script>
+</html>
