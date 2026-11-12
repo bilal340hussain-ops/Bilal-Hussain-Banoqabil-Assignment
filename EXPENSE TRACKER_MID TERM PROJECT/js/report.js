@@ -78,32 +78,3 @@ if (categoryEntries.length === 0) {
     categoryReport.appendChild(item);
   });
 }
-
-document.getElementById("downloadReport").addEventListener("click", function () {
-  const rows = [["Title", "Category", "Date", "Amount (Rs.)", "Status"]];
-  monthExpenses.forEach(function (expense) {
-    rows.push([
-      expense.title,
-      expense.category,
-      expense.date,
-      expense.amount,
-      expense.status,
-    ]);
-  });
-
-  const csv = rows.map(function (row) {
-    return row.map(function (value) {
-      return '"' + String(value).replace(/"/g, '""') + '"';
-    }).join(",");
-  }).join("\r\n");
-  const file = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
-  const fileUrl = URL.createObjectURL(file);
-  const link = document.createElement("a");
-  link.href = fileUrl;
-  link.download = "expense-report-" + reportMonth + ".csv";
-  link.click();
-  setTimeout(function () {
-    URL.revokeObjectURL(fileUrl);
-  }, 1000);
-  document.getElementById("reportMessage").textContent = "Your CSV report is ready.";
-});
