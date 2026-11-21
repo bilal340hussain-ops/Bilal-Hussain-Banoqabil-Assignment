@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090b1a">
+    <meta name="description" content="A clear, simple look at today's weather and the five-day forecast.">
+    <title>Skycast — Weather at a glance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-left" aria-hidden="true"></div>
+    <div class="ambient ambient-right" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Skycast home">
+          <span class="brand-mark" aria-hidden="true">☁</span>
+          <span>skycast<span class="brand-period">.</span></span>
+        </a>
+        <div class="live-status"><span class="live-dot"></span> LIVE WEATHER</div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div class="intro-copy-block">
+            <p class="eyebrow">YOUR DAY, IN FORECAST</p>
+            <h1 id="page-title">Weather that<br><span>moves with you.</span></h1>
+            <p class="intro-copy">A clear look at right now and the days ahead.</p>
+          </div>
+
+          <div class="search-panel">
+            <p class="search-panel-title">Find a place</p>
+            <form class="search-form" id="searchForm">
+              <label class="sr-only" for="cityInput">Search for a city</label>
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="cityInput" name="city" type="search" placeholder="Search a city..." autocomplete="off" required>
+              <button class="search-button" type="submit">Search <span aria-hidden="true">↗</span></button>
+            </form>
+
+            <div class="quick-search" aria-label="Popular cities">
+              <span class="try-label">POPULAR</span>
+              <button type="button" class="city-chip" data-city="Karachi">Karachi</button>
+              <button type="button" class="city-chip" data-city="Lahore">Lahore</button>
+              <button type="button" class="city-chip" data-city="Islamabad">Islamabad</button>
+              <button type="button" class="city-chip" data-city="London">London</button>
+              <button type="button" class="location-button" id="locationBtn"><span aria-hidden="true">◎</span> Use my location</button>
+            </div>
+            <p class="status-message" id="statusMessage" role="status" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="weather-section" aria-label="Weather information">
+          <article class="current-card" id="currentCard" data-weather="clear" aria-live="polite">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="current-card-content">
+              <div class="current-meta">
+                <span class="section-label">CURRENT CONDITIONS</span>
+                <span class="meta-divider" aria-hidden="true"></span>
+                <span id="localTime">--:-- local</span>
+              </div>
+
+              <div class="current-main">
+                <div class="current-copy">
+                  <p class="location-line" id="locationLabel">WEATHER NEAR YOU</p>
+                  <h2 id="cityName">Karachi</h2>
+                  <p class="country-name" id="countryName">Pakistan</p>
+                  <div class="temperature-line">
+                    <span class="temperature" id="temperature">--°</span>
+                    <span class="current-icon" id="currentIcon" aria-hidden="true">☀</span>
+                  </div>
+                  <p class="condition" id="condition">Getting the latest weather...</p>
+                  <p class="feels-like">Feels like <span id="feelsLike">--°</span></p>
+                </div>
+                <div class="weather-art" aria-hidden="true">
+                  <div class="art-orbit"></div>
+                  <div class="art-sun"></div>
+                  <div class="art-cloud art-cloud-one"></div>
+                  <div class="art-cloud art-cloud-two"></div>
+                  <span class="art-star art-star-one">✦</span>
+                  <span class="art-star art-star-two">✧</span>
+                </div>
+              </div>
+
+              <div class="sun-times">
+                <span><span class="sun-time-icon" aria-hidden="true">↑</span> Sunrise <strong id="sunrise">--:--</strong></span>
+                <span class="sun-times-divider" aria-hidden="true"></span>
+                <span><span class="sun-time-icon sunset-icon" aria-hidden="true">↓</span> Sunset <strong id="sunset">--:--</strong></span>
+              </div>
+            </div>
+          </article>
+
+          <div class="details-grid" aria-label="Weather details">
+            <article class="detail-card">
+              <div class="detail-icon humidity-icon" aria-hidden="true">◌</div>
+              <p class="detail-label">HUMIDITY</p>
+              <p class="detail-value" id="humidity">--<span>%</span></p>
+            </article>
+            <article class="detail-card">
+              <div class="detail-icon wind-icon" aria-hidden="true">↗</div>
+              <p class="detail-label">WIND</p>
+              <p class="detail-value" id="wind">--<span> km/h</span></p>
+            </article>
+            <article class="detail-card">
+              <div class="detail-icon pressure-icon" aria-hidden="true">⌁</div>
+              <p class="detail-label">PRESSURE</p>
+              <p class="detail-value" id="pressure">--<span> hPa</span></p>
+            </article>
+          </div>
+
+          <section class="forecast-section" aria-labelledby="forecastTitle">
+            <div class="forecast-heading">
+              <div>
+                <p class="section-label">PLAN AHEAD</p>
+                <h2 id="forecastTitle">Next five days</h2>
+              </div>
+              <span class="forecast-note">Daily outlook</span>
+            </div>
+            <div class="forecast-list" id="forecastList" aria-live="polite">
+              <p class="forecast-placeholder">Your forecast will appear here.</p>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Made for wherever you are.</span>
+        <span>Weather data by Open-Meteo</span>
+      </footer>
+    </div>
+  </body>
+</html>
